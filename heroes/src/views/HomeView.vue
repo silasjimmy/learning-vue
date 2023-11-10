@@ -1,9 +1,10 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import Navbar from "../components/Navbar.vue";
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <Navbar />
+    <h1>Hello there!</h1>
   </main>
 </template>
