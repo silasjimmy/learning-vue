@@ -1,41 +1,20 @@
 <script setup>
 import EventCard from "../components/EventCard.vue";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import EventService from "../services/EventService.js";
 
-const events = ref([{
-  id: 1,
-  category: 'animal welfare',
-  title: 'cat adoption day',
-  dedscription: 'find your feline friend at this event',
-  location: 'meow town',
-  date: 'january 28, 2022',
-  time: '12:00',
-  petsAllowed: true,
-  organizer: 'kat laydee'
-},
-{
-  id: 2,
-  category: 'animal welfare',
-  title: 'community gardening',
-  dedscription: 'find your feline friend at this event',
-  location: 'meow town',
-  date: 'january 28, 2022',
-  time: '12:00',
-  petsAllowed: true,
-  organizer: 'kat laydee'
-},
-{
-  id: 3,
-  category: 'animal welfare',
-  title: 'beach cleanup',
-  dedscription: 'find your feline friend at this event',
-  location: 'meow town',
-  date: 'january 28, 2022',
-  time: '12:00',
-  petsAllowed: true,
-  organizer: 'kat laydee'
-}],
-)
+const events = ref(null)
+
+onMounted(() => {
+  EventService.getEvents()
+  .then((response) => {
+    events.value = response.data
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+})
+
 </script>
 
 <template>
